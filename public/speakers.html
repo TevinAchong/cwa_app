@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Speakers</title>
+
+    <!-- JQuery -->
+    <script src="lib/jquery.min.js"></script>
+     <!-- Loading in the Firebase Library -->
+     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Titillium+Web" rel="stylesheet">
+    <!-- Firebase configurations -->
+    <script src="js/firebase_config.js"></script>
+    <!-- Script that deals with authentication -->
+    <script src="js/auth.js"></script>
+    <!-- Script to handle functions used across the entire application -->
+    <script src="js/utility_functions.js"></script>
+    <script src="js/speakers.js"></script>
+
+    <style>
+        body {
+            font-family: 'Titillium Web';
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navbar-fixed hide-on-large">
+        <nav class="green lighten-3"> 
+            <a href="#" class="brand-logo center">Speakers <i class="material-icons">face</i></a>
+            <!-- Button that Triggers the Side Menu -->
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </nav>
+    </div>
+    
+    <!-- Side Navigation Bar -->
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view center" style="height: 23vh;">
+                <div class="background">
+                    <img src="img/farm-bg.jpg" alt="Farm">
+                </div>
+                <span class="white-text center">Caribbean Week of Agriculture 2018</span>
+            </div>
+        </li>
+        <li><a href="agenda.html"><i class="material-icons">date_range</i>CWA Agenda</a></li>
+        <li><a href="map.html"><i class="material-icons">map</i>Floor Map</a></li>
+        <li><a href="expo.html"><i class="material-icons">local_mall</i>Expo</a></li>
+        <li><a href="chat.html"><i class="material-icons">chat</i>Let's Chat</a></li>
+        <li><a href="speakers.html"><i class="material-icons">perm_identity</i>Speakers/Presenters</a></li>
+        <li><a href="companies.html"><i class="material-icons">business</i>Companies</a></li>
+        <li><a href="files.html"><i class="material-icons">folder_open</i>Share Files</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a href="#" id="signoutBtn"><i class="material-icons">keyboard_return</i>Sign Out</a></li>
+    </ul>
+    
+    <!-- Button that Triggers the Navigation ( on large screens ) -->
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons hide-on-med-and-down black-text">menu</i></a>
+    <!-- End Navigation -->
+
+    <!-- This is where all companies will be displayed -->
+    <div class="row" id="speakers"></div>
+
+    <!-- Activating all MaterializeCSS functions using jQuery -->
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+</html>

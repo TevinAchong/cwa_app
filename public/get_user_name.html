@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CWA FileShare</title>
+
+    <!-- JQuery -->
+    <script src="lib/jquery.min.js"></script>
+    <!-- Loading in the Firebase Library -->
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Titillium+Web" rel="stylesheet">
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Titillium Web'; 
+        }
+        .form {
+            padding-top: 3vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navbar-fixed hide-on-large">
+        <nav class="green lighten-3"> 
+            <a href="#" class="brand-logo center">Information</a>
+        </nav>
+    </div>
+    
+    <!-- Form to collect user info -->
+    <div class="row form">
+        <form class="col s12" id="info-form">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="text" id="firstname" class="validate" required />
+                    <label for="firstname">First Name</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="text" id="lastname" class="validate" required />
+                    <label for="lastname">Last Name</label>
+                </div>
+            </div>
+            <div class="col s12">
+                <button type="submit" class="btn green lighten-3" style="width:100%;">Continue</button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="col s12">
+                <button class="btn red lighten-2" id="clearBtn" style="width:100%">Clear</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal Trigger -->
+    <div class="container">
+        <a class="right pulse waves-effect waves-light btn btn-floating modal-trigger red lighten-3" href="#modal1">?</a>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Why Is This Information Necessary?</h4>
+            <p>The application requires your name simply so that your colleagues at the Caribbean Week of Agriculture can clearly identify you.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- Firebase configurations -->
+    <script src="js/firebase_config.js"></script>
+    <!-- Script that deals with authentication -->
+    <script src="js/auth.js"></script>
+    <!-- Script to handle on-screen notifications -->
+    <script src="js/utility_functions.js"></script>
+    <!-- Script that deals with uploading files to firebase storage -->
+    <script src="js/get_user_name.js"></script>
+
+    <!-- Activating all MaterializeCSS functions using jQuery -->
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+            $('.modal').modal();
+        });
+    </script>
+</body>
+</html>

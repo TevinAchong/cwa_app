@@ -1,0 +1,183 @@
+<!-- LOOK UP FULL CALENDAR JAVASCRIPT -->
+<!-- https://fullcalendar.io/docs/installation -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Expo</title>
+
+    <!-- Loading in the Firebase Library -->
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Titillium+Web" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Full Calendar CSS -->
+    <link rel="stylesheet" href="fullcalendar/fullcalendar.css">
+    <!-- Full Calendar Print -->
+    <link href='fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <!-- Moment JS -->
+    <script src="lib/moment.js"></script>
+    <!-- JQuery -->
+    <script src="lib/jquery.min.js"></script>
+    <!-- Full Calendar JS -->
+    <script src="fullcalendar/fullcalendar.js"></script>
+    <!-- materialize js file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <!-- Firebase configurations -->
+    <script src="js/firebase_config.js"></script>
+    <!-- Script that deals with authentication -->
+    <script src="js/auth.js"></script>
+    <!-- Script to handle functions used across the entire application -->
+    <script src="js/utility_functions.js"></script>
+    <!-- Script that handles inputting info into calendars -->
+    <script src="js/agenda.js"></script>
+
+    <style>
+        body {
+            font-family: 'Titillium Web';
+        }
+        
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+            /* padding-top : 5vh;  */
+        }
+
+        .tab a.active {
+            color:white !important;
+            background-color:rgba(165, 214, 167, 0.6)!important;
+        }
+
+        .tabs .indicator {
+            background-color: green; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navbar-fixed hide-on-large">
+        <nav class="green lighten-3"> 
+            <a href="#" class="brand-logo center">Agenda<i class="material-icons">developer_board</i></a>
+            <!-- Button that Triggers the Side Menu -->
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </nav>
+    </div>
+    
+    <!-- Side Navigation Bar -->
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view center" style="height: 23vh;">
+                <div class="background">
+                    <img src="img/farm-bg.jpg" alt="Farm">
+                </div>
+                <span class="white-text center">Caribbean Week of Agriculture 2018</span>
+            </div>
+        </li>
+        <li><a href="agenda.html"><i class="material-icons">date_range</i>CWA Agenda</a></li>
+        <li><a href="map.html"><i class="material-icons">map</i>Floor Map</a></li>
+        <li><a href="expo.html"><i class="material-icons">local_mall</i>Expo</a></li>
+        <li><a href="chat.html"><i class="material-icons">chat</i>Let's Chat</a></li>
+        <li><a href="speakers.html"><i class="material-icons">perm_identity</i>Speakers/Presenters</a></li>
+        <li><a href="companies.html"><i class="material-icons">business</i>Companies</a></li>
+        <li><a href="files.html"><i class="material-icons">folder_open</i>Share Files</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a href="#" id="signoutBtn"><i class="material-icons">keyboard_return</i>Sign Out</a></li>
+    </ul>
+    
+    <!-- Button that Triggers the Navigation ( on large screens ) -->
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons hide-on-med-and-down black-text">menu</i></a>
+    <!-- End Navigation -->
+
+    <!--
+    <ul id="tabs-swipe-demo" class="tabs">
+        <li class="tab col s2"><a href="#test-swipe-1" class="active green-text">All</a></li>
+        <li class="tab col s2"><a class="green-text" href="#test-swipe-2">Farmers</a></li>
+        <li class="tab col s2"><a class="green-text" href="#test-swipe-3">Kids</a></li>
+        <li class="tab col s2"><a class="green-text" href="#test-swipe-4">Gov't Officials</a></li>
+        <li class="tab col s2"><a class="green-text" href="#test-swipe-5">Techies</a></li>
+        <li class="tab col s2"><a class="green-text" href="#test-swipe-6">Human Resources</a></li>
+        <div class="indicator" style="z-index:1"></div>
+    </ul>
+    <div id="test-swipe-1" class="col s12">
+        <div id='all'></div> 
+    </div>
+    <div id="test-swipe-2" class="col s12">
+        <div id='farmers'></div>
+    </div>
+    <div id="test-swipe-3" class="col s12">
+        <div id='kids'></div>
+    </div>
+    <div id="test-swipe-4" class="col s12">
+        <div id='govt'></div>
+    </div>
+    <div id="test-swipe-5" class="col s12">
+        <div id='techies'></div>
+    </div>
+    <div id="test-swipe-6" class="col s12">
+        <div id='hr'></div>
+    </div> -->
+
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">format_shapes</i>All Events</div>
+            <div class="collapsible-body">
+                <div id="all"></div>
+            </div>
+        </li>
+
+        <li>
+            <div class="collapsible-header"><i class="material-icons">filter_vintage</i>Events For Farmers</div>
+            <div class="collapsible-body">
+                <div id="farmers"></div>
+            </div>
+        </li>
+
+        <li>
+            <div class="collapsible-header"><i class="material-icons">developer_mode</i>Events For Techies</div>
+            <div class="collapsible-body">
+                <div id="techies"></div>
+            </div>
+        </li>
+
+        <li>
+            <div class="collapsible-header"><i class="material-icons">card_travel</i>Events For Government Officials</div>
+            <div class="collapsible-body">
+                <div id="govt"></div>
+            </div>
+        </li>
+
+        <li>
+            <div class="collapsible-header"><i class="material-icons">group</i>Events For Human Resources</div>
+            <div class="collapsible-body">
+                <div id="hr"></div>
+            </div>
+        </li>
+
+        <li>
+            <div class="collapsible-header"><i class="material-icons">child_care</i>Events For Kids</div>
+            <div class="collapsible-body">
+                <div id="kids"></div>
+            </div>
+        </li>
+    </ul>
+    
+    
+    <!-- Activating all MaterializeCSS functions using jQuery -->
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+            $('.tabs').tabs({
+                swipeable: true
+            });
+            $('.collapsible').collapsible();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CWA FileShare</title>
+
+    <!-- JQuery -->
+    <script src="lib/jquery.min.js"></script>
+    <!-- Loading in the Firebase Library -->
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Titillium+Web" rel="stylesheet">
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <!-- Firebase configurations -->
+    <script src="js/firebase_config.js"></script>
+    <!-- Script to handle on-screen notifications -->
+    <script src="js/utility_functions.js"></script>
+
+    <style>
+        body {
+            font-family: 'Titillium Web'; 
+        }
+        .form {
+            padding-top: 3vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navbar-fixed hide-on-large">
+        <nav class="green lighten-3"> 
+            <a href="#" class="brand-logo center">Register</a>
+        </nav>
+    </div>
+    
+    <!-- Form to collect user info -->
+    <div class="row form">
+        <form class="col s12" id="signup-form">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input type="email" id="email" class="validate" required />
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="password" type="password" class="validate" required />
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="password_2" type="password" class="validate" required />
+                    <label for="password_2">Repeat Password</label>
+                </div>
+            </div>
+            <div class="col s12">
+                <button type="submit" class="btn green lighten-3" style="width:100%;">Submit</button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="col s12">
+                <button class="btn red lighten-2" style="width:100%">Clear</button>
+            </div>
+        </form>
+    </div>
+    <div class="container center">
+        <a href="signin.html">Already have an account? Tap here to Sign In.</a>
+    </div>
+
+    <!-- Script that deals with uploading files to firebase storage -->
+    <script src="js/register.js"></script>
+
+    <!-- Activating all MaterializeCSS functions using jQuery -->
+    <script>    
+        $(document).ready(function(){
+            // Function to import the head from the head.html file
+            $("head-goes-here").load("head.html"); 
+            // Function which allows for including one html file in another
+            $("#nav-goes-here").load("nav.html");
+            $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+</html>
