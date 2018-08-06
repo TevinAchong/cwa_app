@@ -1,0 +1,22 @@
+{
+  "name": "file_sharing_cwa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sassCompile": "node-sass public/style.scss public/style.css -w",
+    "start": "nodemon public/js/chat.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.9.2"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^1.18.3",
+    "mongodb": "^2.2.30",
+    "socket.io": "^2.1.1"
+  },
+  "keywords": [],
+  "description": ""
+}
