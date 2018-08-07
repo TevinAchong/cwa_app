@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 // The value the user entered into the input (The message the user wants to send)
                 message = document.getElementById('message').value; 
                 
-
+                // Logging out that the message is being sent
                 console.log('Sending...'); 
 
                 // This function uploads the message to the Firestore database with the message content, the upload time (current time), and the sender
@@ -93,5 +93,17 @@ firebase.auth().onAuthStateChanged(function(user) {
                 }); 
             });
         }); 
+
+        /*----- Trying out push notifications -----*/
+        const messaging = firebase.messaging(); 
+        messaging.requestPermission().then(() => {
+            console.log('Have Permission'); 
+            return messaging.getToken(); 
+        }).then((token) => {
+            console.log(token); 
+        }).catch(() => {
+            console.log('No permission');
+        }); 
+        /*----- Push Notifications MAY only work for Android devices -----*/
     }
 }); 
